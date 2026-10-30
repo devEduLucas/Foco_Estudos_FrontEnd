@@ -1,0 +1,25 @@
+.envoltorio {
+  position: relative;
+}
+
+.envoltorio .comIcone {
+  padding-right: 46px;
+}
+
+.alternar {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 100%;
+  border: 0;
+  background: none;
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+}
+
+.alternar:hover {
+  color: var(--cor-texto);
+}

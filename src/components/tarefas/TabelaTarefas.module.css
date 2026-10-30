@@ -1,0 +1,193 @@
+.tabela {
+  position: relative;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2.6fr) minmax(0, 1.4fr) minmax(0, 1.3fr) minmax(0, 0.9fr)
+    minmax(0, 1.2fr) 44px;
+  align-items: center;
+  column-gap: 20px;
+  padding: 0 28px;
+}
+
+.cabecalho {
+  height: 56px;
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.corpo {
+  min-height: 76px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.corpo + .corpo {
+  border-top: 1px solid var(--cor-borda);
+}
+
+.tarefa {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.caixa {
+  appearance: none;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1.5px solid #c9c9c5;
+  border-radius: var(--raio-sm);
+  background: var(--cor-superficie) center / 13px no-repeat;
+  cursor: pointer;
+}
+
+.caixa:checked {
+  border-color: var(--cor-primaria);
+  background-color: var(--cor-primaria);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5'/%3E%3C/svg%3E");
+}
+
+.titulo {
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.concluida {
+  color: var(--cor-texto-secundario);
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.materia,
+.prazo,
+.prioridade,
+.prioridadeAlta {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.prazo {
+  font-variant-numeric: tabular-nums;
+}
+
+.prazoAtrasado {
+  color: var(--cor-perigo);
+  font-weight: 600;
+}
+
+.prioridade {
+  color: var(--cor-texto-secundario);
+}
+
+.prioridadeAlta {
+  font-weight: 600;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ponto {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.statusPENDENTE {
+  color: var(--cor-texto-secundario);
+}
+
+.statusEM_ANDAMENTO {
+  color: var(--cor-primaria);
+}
+
+.statusCONCLUIDA {
+  color: var(--cor-sucesso);
+}
+
+.statusATRASADA {
+  color: var(--cor-perigo);
+}
+
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .cabecalho {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .linha {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .corpo {
+    grid-template-areas:
+      'tarefa acoes'
+      'materia prazo'
+      'prioridade status';
+  }
+
+  .celulaTarefa {
+    grid-area: tarefa;
+  }
+
+  .celulaAcoes {
+    grid-area: acoes;
+  }
+
+  .celulaMateria {
+    grid-area: materia;
+  }
+
+  .celulaPrazo {
+    grid-area: prazo;
+  }
+
+  .celulaPrioridade {
+    grid-area: prioridade;
+  }
+
+  .celulaStatus {
+    grid-area: status;
+  }
+
+  .materia::before,
+  .prazo::before,
+  .prioridade::before,
+  .prioridadeAlta::before {
+    content: attr(data-rotulo) ': ';
+    color: var(--cor-texto-secundario);
+    font-weight: 400;
+  }
+}

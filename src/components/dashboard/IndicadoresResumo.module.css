@@ -1,0 +1,52 @@
+.caixa {
+  overflow: hidden;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.item {
+  padding: 18px 22px 17px;
+  border-left: 1px solid var(--cor-borda);
+}
+
+.item:first-child {
+  border-left: 0;
+}
+
+.valor {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.perigo {
+  color: var(--cor-perigo);
+}
+
+.rotulo {
+  margin-top: 6px;
+  color: var(--cor-texto-secundario);
+  font-size: 12.5px;
+}
+
+@media (max-width: 700px) {
+  .grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .item:nth-child(3) {
+    border-left: 0;
+  }
+
+  .item:nth-child(n + 3) {
+    border-top: 1px solid var(--cor-borda);
+  }
+}

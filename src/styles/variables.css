@@ -1,0 +1,27 @@
+:root {
+  --cor-fundo: #f7f7f5;
+  --cor-painel-lateral: #f0f1f0;
+  --cor-superficie: #ffffff;
+  --cor-texto: #292a2d;
+  --cor-texto-secundario: #77797e;
+  --cor-texto-navegacao: #55575b;
+  --cor-primaria: #355c7d;
+  --cor-primaria-hover: #2c4e69;
+  --cor-borda: #e5e5e2;
+  --cor-borda-forte: #d6d6d2;
+  --cor-placeholder: #a0a2a6;
+  --cor-item-ativo: #eeeeec;
+  --cor-item-hover: #f4f4f2;
+  --cor-perigo: #b3402f;
+  --cor-alerta: #a56f12;
+  --cor-sucesso: #2f6f55;
+
+  --fonte-base: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --raio-sm: 4px;
+  --raio-md: 6px;
+  --raio-lg: 8px;
+
+  --sidebar-largura: 232px;
+  --conteudo-largura-max: 1440px;
+}

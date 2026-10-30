@@ -1,0 +1,229 @@
+.cartao {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+  background: var(--cor-superficie);
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 28px;
+}
+
+.grupoTitulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.titulo {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hoje {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: var(--raio-md);
+  background: none;
+  color: var(--cor-primaria);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hoje:hover {
+  background: var(--cor-item-hover);
+}
+
+.navegacao {
+  display: flex;
+  gap: 8px;
+}
+
+.seta {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-md);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+.seta:hover {
+  background: var(--cor-fundo);
+}
+
+.tabela {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+  border: 1px solid var(--cor-borda);
+}
+
+.tabela tr > :first-child {
+  border-left: 0;
+}
+
+.tabela tr > :last-child {
+  border-right: 0;
+}
+
+.tabela tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.diaSemana {
+  height: 46px;
+  color: var(--cor-texto-secundario);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dia,
+.fora {
+  height: 124px;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.numero {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.numeroHoje {
+  background: var(--cor-primaria);
+  color: #fff;
+  font-weight: 600;
+}
+
+.compromissos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.compromisso {
+  display: -webkit-box;
+  width: 100%;
+  padding: 6px 8px;
+  overflow: hidden;
+  border: 0;
+  border-left: 3px solid var(--cor-primaria);
+  border-radius: var(--raio-sm);
+  background: var(--cor-item-ativo);
+  color: var(--cor-texto);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.compromisso:hover {
+  filter: brightness(0.96);
+}
+
+.compromisso.alta {
+  border-left-color: var(--cor-alerta);
+  background: color-mix(in srgb, var(--cor-alerta) 12%, #fff);
+}
+
+.compromisso.atrasado {
+  border-left-color: var(--cor-perigo);
+  background: color-mix(in srgb, var(--cor-perigo) 10%, #fff);
+}
+
+.compromisso.concluido {
+  border-left-color: var(--cor-sucesso);
+  background: color-mix(in srgb, var(--cor-sucesso) 10%, #fff);
+  color: var(--cor-texto-secundario);
+  text-decoration: line-through;
+}
+
+.pontos {
+  display: none;
+}
+
+.ponto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+}
+
+.ponto.alta {
+  background: var(--cor-alerta);
+}
+
+.ponto.atrasado {
+  background: var(--cor-perigo);
+}
+
+.ponto.concluido {
+  background: var(--cor-sucesso);
+}
+
+@media (max-width: 700px) {
+  .cabecalho {
+    padding: 16px;
+  }
+
+  .titulo {
+    font-size: 17px;
+  }
+
+  .diaSemana {
+    height: 38px;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  .dia,
+  .fora {
+    height: 64px;
+    padding: 6px 2px;
+    text-align: center;
+  }
+
+  .numero {
+    min-width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .compromissos {
+    display: none;
+  }
+
+  .pontos {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 4px;
+  }
+}

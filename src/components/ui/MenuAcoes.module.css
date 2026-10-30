@@ -1,0 +1,55 @@
+.raiz {
+  position: relative;
+  display: inline-block;
+}
+
+.gatilho {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--raio-md);
+  background: transparent;
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+}
+
+.gatilho:hover,
+.gatilho[aria-expanded='true'] {
+  background: var(--cor-item-hover);
+  color: var(--cor-texto);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 10;
+  min-width: 164px;
+  padding: 4px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+  background: var(--cor-superficie);
+}
+
+.item {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--raio-md);
+  background: none;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: var(--cor-item-hover);
+}
+
+.perigo {
+  color: var(--cor-perigo);
+}

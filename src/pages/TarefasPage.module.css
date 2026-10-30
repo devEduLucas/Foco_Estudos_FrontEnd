@@ -1,0 +1,28 @@
+.secoes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cartao {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+  background: var(--cor-superficie);
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 56px 28px;
+  color: var(--cor-texto-secundario);
+  font-size: 15px;
+  text-align: center;
+}
+
+.erro {
+  margin-bottom: 16px;
+  color: var(--cor-perigo);
+  font-size: 14px;
+}

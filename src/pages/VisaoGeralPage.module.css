@@ -1,0 +1,28 @@
+.secoes {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.colunas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: stretch;
+  gap: 22px;
+}
+
+.erro {
+  margin-bottom: 22px;
+  padding: 12px 16px;
+  border: 1px solid var(--cor-perigo);
+  border-radius: var(--raio-md);
+  background: var(--cor-superficie);
+  color: var(--cor-perigo);
+  font-size: 12.5px;
+}
+
+@media (max-width: 1000px) {
+  .colunas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
