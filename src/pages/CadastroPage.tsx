@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../components/auth/AuthLayout';
 import { CampoSenha } from '../components/auth/CampoSenha';
+import { ForcaSenha } from '../components/auth/ForcaSenha';
 import formulario from '../components/auth/formulario.module.css';
 import { Botao } from '../components/ui/Botao';
 import { Campo } from '../components/ui/Campo';
@@ -18,9 +19,9 @@ interface Valores {
   confirmacao: string;
 }
 
-type Erros = Partial<Record<keyof Valores, string>>;
+type Erros = Partial<Record<keyof Valores | 'termos', string>>;
 
-function validar(valores: Valores): Erros {
+function validar(valores: Valores, aceitouTermos: boolean): Erros {
   const erros: Erros = {};
   if (!valores.nome.trim()) erros.nome = 'Informe seu nome completo.';
   if (!valores.email.trim()) erros.email = 'Informe seu e-mail.';
@@ -31,12 +32,14 @@ function validar(valores: Valores): Erros {
   }
   if (!valores.confirmacao) erros.confirmacao = 'Confirme sua senha.';
   else if (valores.confirmacao !== valores.senha) erros.confirmacao = 'As senhas não coincidem.';
+  if (!aceitouTermos) erros.termos = 'Aceite os Termos de Uso e a Política de Privacidade.';
   return erros;
 }
 
 export function CadastroPage() {
   const navigate = useNavigate();
   const [valores, setValores] = useState<Valores>({ nome: '', email: '', senha: '', confirmacao: '' });
+  const [aceitouTermos, setAceitouTermos] = useState(false);
   const [erros, setErros] = useState<Erros>({});
   const [erroEnvio, setErroEnvio] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
@@ -48,7 +51,7 @@ export function CadastroPage() {
 
   async function aoEnviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
-    const novosErros = validar(valores);
+    const novosErros = validar(valores, aceitouTermos);
     setErros(novosErros);
     if (Object.keys(novosErros).length > 0) return;
 
@@ -80,7 +83,7 @@ export function CadastroPage() {
         <>
           Já possui uma conta?{' '}
           <Link to="/entrar" className={formulario.link}>
-            Entrar
+            Voltar para o login
           </Link>
         </>
       }
@@ -114,7 +117,12 @@ export function CadastroPage() {
           )}
         </Campo>
 
-        <Campo rotulo="Senha" grande erro={erros.senha}>
+        <Campo
+          rotulo="Senha"
+          grande
+          erro={erros.senha}
+          ajuda={<ForcaSenha senha={valores.senha} />}
+        >
           {(props) => (
             <CampoSenha
               {...props}
@@ -127,12 +135,7 @@ export function CadastroPage() {
           )}
         </Campo>
 
-        <Campo
-          rotulo="Confirmar senha"
-          grande
-          erro={erros.confirmacao}
-          ajuda={`Use pelo menos ${TAMANHO_MINIMO_SENHA} caracteres.`}
-        >
+        <Campo rotulo="Confirmar senha" grande erro={erros.confirmacao}>
           {(props) => (
             <CampoSenha
               {...props}
@@ -144,6 +147,29 @@ export function CadastroPage() {
             />
           )}
         </Campo>
+
+        <div className={formulario.termos}>
+          <label className={formulario.termosRotulo}>
+            <input
+              type="checkbox"
+              className={formulario.caixa}
+              checked={aceitouTermos}
+              aria-invalid={erros.termos ? true : undefined}
+              onChange={(e) => {
+                setAceitouTermos(e.target.checked);
+                setErros((atual) => ({ ...atual, termos: undefined }));
+              }}
+            />
+            <span>
+              Li e aceito os <strong>Termos de Uso</strong> e a <strong>Política de Privacidade</strong>.
+            </span>
+          </label>
+          {erros.termos && (
+            <p className={formulario.erroTermos} role="alert">
+              {erros.termos}
+            </p>
+          )}
+        </div>
 
         {erroEnvio && (
           <p className={formulario.erroEnvio} role="alert">

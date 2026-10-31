@@ -1,0 +1,54 @@
+.forca {
+  --cor-nivel: var(--cor-borda-forte);
+  margin-top: 4px;
+}
+
+.forca[data-nivel='1'] {
+  --cor-nivel: var(--cor-perigo);
+}
+
+.forca[data-nivel='2'] {
+  --cor-nivel: var(--cor-alerta);
+}
+
+.forca[data-nivel='3'] {
+  --cor-nivel: var(--cor-primaria);
+}
+
+.forca[data-nivel='4'] {
+  --cor-nivel: var(--cor-sucesso);
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.rotulo {
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+
+.barras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.barra {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--cor-borda);
+  transition: background-color 0.15s;
+}
+
+.ativa {
+  background: var(--cor-nivel);
+}
+
+.dica {
+  margin-top: 8px;
+  font-size: 12px;
+}
