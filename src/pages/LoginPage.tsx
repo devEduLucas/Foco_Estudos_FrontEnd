@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../components/auth/AuthLayout';
 import { CampoSenha } from '../components/auth/CampoSenha';
 import formulario from '../components/auth/formulario.module.css';
@@ -28,6 +28,7 @@ function validar(valores: Valores): Erros {
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const origem = (useLocation().state as { origem?: string } | null)?.origem ?? '/';
   const [valores, setValores] = useState<Valores>({ email: '', senha: '' });
   const [erros, setErros] = useState<Erros>({});
   const [erroEnvio, setErroEnvio] = useState<string | null>(null);
@@ -49,7 +50,7 @@ export function LoginPage() {
 
     try {
       await authService.entrar({ email: valores.email.trim(), senha: valores.senha });
-      navigate('/');
+      navigate(origem, { replace: true });
     } catch (erro) {
       setErroEnvio(
         statusDoErro(erro) === 401

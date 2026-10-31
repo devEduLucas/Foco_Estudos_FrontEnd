@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom';
-import { Book, Calendar, House, SquareCheck, type LucideIcon } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Book, Calendar, House, LogOut, SquareCheck, type LucideIcon } from 'lucide-react';
+import { authService } from '../../services/authService';
 import estilos from './Sidebar.module.css';
 
 interface ItemNavegacao {
@@ -17,6 +18,13 @@ const itens: ItemNavegacao[] = [
 ];
 
 export function Sidebar() {
+  const navigate = useNavigate();
+
+  function sair() {
+    authService.sair();
+    navigate('/entrar', { replace: true });
+  }
+
   return (
     <aside className={estilos.sidebar}>
       <div className={estilos.marca}>
@@ -44,6 +52,11 @@ export function Sidebar() {
           ))}
         </ul>
       </nav>
+
+      <button type="button" className={`${estilos.link} ${estilos.sair}`} onClick={sair}>
+        <LogOut size={17} strokeWidth={1.75} aria-hidden="true" />
+        Sair
+      </button>
     </aside>
   );
 }

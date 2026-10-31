@@ -40,9 +40,15 @@
 }
 
 .grande .linha {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .grande .rotulo {
-  font-size: 13px;
+  font-size: 13.5px;
+}
+
+.grande .erro,
+.grande .ajuda {
+  margin-top: 8px;
+  font-size: 12px;
 }
