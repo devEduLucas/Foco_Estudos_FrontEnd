@@ -6,5 +6,7 @@ export const resumoService = {
     api.get<ResumoTarefas>('/resumo', { signal }).then((resposta) => resposta.data),
 
   obterResumoSemanal: (signal?: AbortSignal) =>
-    api.get<ResumoSemanal>('/resumo/semana', { signal }).then((resposta) => resposta.data),
+    api
+      .get<{ total: number; concluidas: number }>('/resumo/semanal', { signal })
+      .then(({ data }): ResumoSemanal => ({ planejadas: data.total, concluidas: data.concluidas })),
 };
