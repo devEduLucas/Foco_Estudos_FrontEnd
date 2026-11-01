@@ -16,7 +16,7 @@
 
 .primario {
   background: var(--cor-primaria);
-  color: #fff;
+  color: var(--cor-sobre-primaria);
 }
 
 .primario:hover:not(:disabled) {
@@ -40,7 +40,7 @@
 
 .perigo {
   background: var(--cor-perigo);
-  color: #fff;
+  color: var(--cor-sobre-perigo);
 }
 
 .perigo:hover:not(:disabled) {

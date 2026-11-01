@@ -3,6 +3,7 @@ import { RotaProtegida, RotaPublica } from './components/auth/RotaProtegida';
 import { Layout } from './components/layout/Layout';
 import { CalendarioPage } from './pages/CalendarioPage';
 import { CadastroPage } from './pages/CadastroPage';
+import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { MateriasPage } from './pages/MateriasPage';
 import { TarefasPage } from './pages/TarefasPage';
@@ -17,7 +18,7 @@ export default function App() {
         <Route path="cadastro" element={<CadastroPage />} />
       </Route>
 
-      <Route element={<RotaProtegida />}>
+      <Route element={<RotaProtegida visitanteNaRaiz={<HomePage />} />}>
         <Route element={<Layout />}>
           <Route index element={<VisaoGeralPage />} />
           <Route path="materias" element={<MateriasPage />} />

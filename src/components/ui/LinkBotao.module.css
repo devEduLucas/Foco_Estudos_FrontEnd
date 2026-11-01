@@ -6,7 +6,7 @@
   padding: 0 16px;
   border-radius: var(--raio-md);
   background: var(--cor-primaria);
-  color: #fff;
+  color: var(--cor-sobre-primaria);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;

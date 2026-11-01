@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--cor-fundo);
+}
+
 body {
   margin: 0;
   background: var(--cor-fundo);
@@ -39,6 +51,38 @@ button {
 :focus-visible {
   outline: 2px solid var(--cor-primaria);
   outline-offset: 2px;
+}
+
+/* Paleta da marca (telas de autenticação e Home) no tema claro. */
+:root:not([data-theme='dark']) .paleta-marca {
+  --cor-primaria: #2f5d83;
+  --cor-primaria-hover: #254b6a;
+  --cor-fundo: #f8f8f7;
+  --cor-superficie: #ffffff;
+  --cor-texto: #111827;
+  --cor-texto-secundario: #6b7280;
+  --cor-borda: #e5e7eb;
+  --cor-borda-forte: #e5e7eb;
+  --cor-placeholder: #9ca3af;
+}
+
+/* Troca de tema suave: ativada só durante a troca (classe aplicada por tema.ts). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.tema-animando,
+  html.tema-animando *,
+  html.tema-animando *::before,
+  html.tema-animando *::after {
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease,
+      border-color 0.35s ease,
+      fill 0.35s ease,
+      stroke 0.35s ease !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

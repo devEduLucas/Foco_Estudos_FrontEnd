@@ -1,0 +1,63 @@
+.botao {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease-saida),
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.botao:hover {
+  border-color: var(--cor-primaria);
+  transform: translateY(-1px);
+}
+
+.botao:active {
+  transform: scale(0.94);
+  transition-duration: 0.06s;
+}
+
+.icones {
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+
+.sol,
+.lua {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 0.3s var(--ease-saida),
+    transform 0.4s var(--ease-saida);
+}
+
+/* Tema claro: mostra o sol. Tema escuro: mostra a lua. */
+.sol {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+.lua {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.6);
+}
+
+[data-escuro='true'] .sol {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.6);
+}
+
+[data-escuro='true'] .lua {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
