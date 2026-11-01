@@ -58,9 +58,15 @@
   background: var(--cor-item-hover);
 }
 
+.rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
 .sair {
   width: 100%;
-  margin-top: auto;
   border: 0;
   background: none;
   cursor: pointer;

@@ -20,7 +20,7 @@
   width: 18px;
   height: 18px;
   margin: 0;
-  border: 1.5px solid #c9c9c5;
+  border: 1.5px solid var(--cor-placeholder);
   border-radius: var(--raio-sm);
   background: var(--cor-superficie) center / 12px no-repeat;
   cursor: pointer;

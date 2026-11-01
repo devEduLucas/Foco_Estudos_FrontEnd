@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Book, Calendar, House, LogOut, SquareCheck, type LucideIcon } from 'lucide-react';
 import { authService } from '../../services/authService';
+import { AlternarTema } from '../ui/AlternarTema';
 import estilos from './Sidebar.module.css';
 
 interface ItemNavegacao {
@@ -22,7 +23,7 @@ export function Sidebar() {
 
   function sair() {
     authService.sair();
-    navigate('/entrar', { replace: true });
+    navigate('/', { replace: true });
   }
 
   return (
@@ -53,10 +54,13 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      <button type="button" className={`${estilos.link} ${estilos.sair}`} onClick={sair}>
-        <LogOut size={17} strokeWidth={1.75} aria-hidden="true" />
-        Sair
-      </button>
+      <div className={estilos.rodape}>
+        <AlternarTema comRotulo className={`${estilos.link} ${estilos.sair}`} />
+        <button type="button" className={`${estilos.link} ${estilos.sair}`} onClick={sair}>
+          <LogOut size={17} strokeWidth={1.75} aria-hidden="true" />
+          Sair
+        </button>
+      </div>
     </aside>
   );
 }

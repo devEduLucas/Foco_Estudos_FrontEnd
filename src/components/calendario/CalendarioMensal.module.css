@@ -114,7 +114,7 @@
 
 .numeroHoje {
   background: var(--cor-primaria);
-  color: #fff;
+  color: var(--cor-sobre-primaria);
   font-weight: 600;
 }
 
@@ -150,17 +150,17 @@
 
 .compromisso.alta {
   border-left-color: var(--cor-alerta);
-  background: color-mix(in srgb, var(--cor-alerta) 12%, #fff);
+  background: color-mix(in srgb, var(--cor-alerta) 12%, var(--cor-superficie));
 }
 
 .compromisso.atrasado {
   border-left-color: var(--cor-perigo);
-  background: color-mix(in srgb, var(--cor-perigo) 10%, #fff);
+  background: color-mix(in srgb, var(--cor-perigo) 10%, var(--cor-superficie));
 }
 
 .compromisso.concluido {
   border-left-color: var(--cor-sucesso);
-  background: color-mix(in srgb, var(--cor-sucesso) 10%, #fff);
+  background: color-mix(in srgb, var(--cor-sucesso) 10%, var(--cor-superficie));
   color: var(--cor-texto-secundario);
   text-decoration: line-through;
 }

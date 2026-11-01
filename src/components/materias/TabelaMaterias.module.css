@@ -44,8 +44,8 @@
   width: 48px;
   height: 48px;
   border-radius: var(--raio-lg);
-  background: #eceeee;
-  color: #4a5560;
+  background: var(--cor-item-ativo);
+  color: var(--cor-texto-navegacao);
   font-size: 13px;
   font-weight: 600;
 }
