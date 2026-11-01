@@ -10,7 +10,6 @@ export interface Tarefa {
   id: number;
   titulo: string;
   descricao: string | null;
-  /** ISO 8601. Com horário ("2026-10-12T18:00:00") ou apenas data ("2026-10-12"). */
   dataPrazo: string;
   status: StatusTarefa;
   prioridade: PrioridadeTarefa;
@@ -20,7 +19,6 @@ export interface Tarefa {
 export interface TarefaRequest {
   titulo: string;
   descricao: string | null;
-  /** ISO 8601 com horário, ex.: "2026-10-12T18:00:00". */
   dataPrazo: string;
   status: StatusTarefa;
   prioridade: PrioridadeTarefa;

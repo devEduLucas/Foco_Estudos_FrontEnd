@@ -12,7 +12,6 @@ import { PainelLateral } from '../ui/PainelLateral';
 import estilos from './TarefaPainel.module.css';
 
 interface TarefaPainelProps {
-  /** Tarefa em edição. Sem valor, o painel cria uma nova tarefa. */
   tarefa?: Tarefa;
   aoFechar: () => void;
   aoSalvar: () => void;
@@ -23,7 +22,6 @@ interface Valores {
   descricao: string;
   materiaId: string;
   data: string;
-  horario: string;
   prioridade: PrioridadeTarefa;
   status: StatusTarefa;
 }
@@ -35,26 +33,21 @@ const VALORES_INICIAIS: Valores = {
   descricao: '',
   materiaId: '',
   data: '',
-  horario: '',
   prioridade: 'BAIXA',
   status: 'PENDENTE',
 };
 
-/** Horário usado quando o prazo é informado sem horário. */
-const HORARIO_PADRAO = '23:59';
-
 function valoresDaTarefa(tarefa?: Tarefa): Valores {
   if (!tarefa) return VALORES_INICIAIS;
 
-  // O prazo é lido como texto para não deslocar o dia/horário por fuso horário.
-  const partes = /^(\d{4}-\d{2}-\d{2})(?:T(\d{2}:\d{2}))?/.exec(tarefa.dataPrazo);
+  // O prazo é lido como texto para não deslocar o dia por fuso horário.
+  const partes = /^\d{4}-\d{2}-\d{2}/.exec(tarefa.dataPrazo);
 
   return {
     titulo: tarefa.titulo,
     descricao: tarefa.descricao ?? '',
     materiaId: String(tarefa.materia.id),
-    data: partes?.[1] ?? '',
-    horario: partes?.[2] ?? '',
+    data: partes?.[0] ?? '',
     prioridade: tarefa.prioridade,
     status: tarefa.status,
   };
@@ -94,7 +87,7 @@ export function TarefaPainel({ tarefa, aoFechar, aoSalvar }: TarefaPainelProps) 
     const dados: TarefaRequest = {
       titulo: valores.titulo.trim(),
       descricao: valores.descricao.trim() || null,
-      dataPrazo: `${valores.data}T${valores.horario || HORARIO_PADRAO}:00`,
+      dataPrazo: valores.data,
       status: valores.status,
       prioridade: valores.prioridade,
       materiaId: Number(valores.materiaId),
@@ -196,31 +189,17 @@ export function TarefaPainel({ tarefa, aoFechar, aoSalvar }: TarefaPainelProps) 
         )}
       </Campo>
 
-      <div className={estilos.duasColunas}>
-        <Campo rotulo="Prazo" obrigatorio erro={erros.data}>
-          {(props) => (
-            <input
-              {...props}
-              type="date"
-              className={classeControle(Boolean(erros.data))}
-              value={valores.data}
-              onChange={(e) => alterar('data', e.target.value)}
-            />
-          )}
-        </Campo>
-
-        <Campo rotulo="Horário">
-          {(props) => (
-            <input
-              {...props}
-              type="time"
-              className={classeControle(false)}
-              value={valores.horario}
-              onChange={(e) => alterar('horario', e.target.value)}
-            />
-          )}
-        </Campo>
-      </div>
+      <Campo rotulo="Prazo" obrigatorio erro={erros.data}>
+        {(props) => (
+          <input
+            {...props}
+            type="date"
+            className={classeControle(Boolean(erros.data))}
+            value={valores.data}
+            onChange={(e) => alterar('data', e.target.value)}
+          />
+        )}
+      </Campo>
 
       <div className={estilos.duasColunas}>
         <Campo rotulo="Prioridade">
